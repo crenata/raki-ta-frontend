@@ -1,14 +1,8 @@
 const IsEmpty = (data) => {
     if (typeof data === "object") {
-        if (!data) {
-            return true;
-        }
-        return false;
+        return !data;
     } else if (Array.isArray(data)) {
-        if (data.length === 0) {
-            return true;
-        }
-        return false;
+        return data.length === 0;
     } else if (typeof data === "string") {
         if (!data.trim()) {
             return true;
@@ -19,10 +13,7 @@ const IsEmpty = (data) => {
         }
         return false;
     } else if (typeof data === "number") {
-        if (data === 0) {
-            return true;
-        }
-        return false;
+        return data === 0;
     } else if (typeof data === "undefined") {
         return true;
     }

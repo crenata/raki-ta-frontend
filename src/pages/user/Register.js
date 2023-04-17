@@ -3,12 +3,14 @@ import Template from "../../template/Template";
 import Config from "../../configs/Config";
 import {toast} from "react-toastify";
 
-class Login extends PureComponent {
+class Register extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            name: "",
             email: "",
-            password: ""
+            password: "",
+            confirm_password: ""
         };
     }
 
@@ -18,10 +20,10 @@ class Login extends PureComponent {
         });
     }
 
-    login() {
-        Config.AxiosUser.post("auth/login", this.state).then(response => {
+    register() {
+        Config.AxiosUser.post("auth/register", this.state).then(response => {
             if (response) {
-                toast.success("Logged in...");
+                toast.success("Successfully register!");
                 localStorage.setItem(Config.UserTokenKey, response.data.data.token);
                 setTimeout(() => {
                     location.href = Config.Links.Home;
@@ -36,7 +38,18 @@ class Login extends PureComponent {
                 <div className="container">
                     <div className="d-flex justify-content-center">
                         <div className="auth-form shadow rounded p-3">
-                            <h3 className="m-0 text-center">Login</h3>
+                            <h3 className="m-0 text-center">Register</h3>
+                            <div className="mt-3">
+                                <label htmlFor="name" className="form-label">Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="name"
+                                    placeholder="name@example.com"
+                                    value={this.state.name}
+                                    onChange={event => this.setValue("name", event.target.value)}
+                                />
+                            </div>
                             <div className="mt-3">
                                 <label htmlFor="email" className="form-label">Email</label>
                                 <input
@@ -59,8 +72,19 @@ class Login extends PureComponent {
                                     onChange={event => this.setValue("password", event.target.value)}
                                 />
                             </div>
+                            <div className="mt-3">
+                                <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="confirm-password"
+                                    placeholder="confirm password"
+                                    value={this.state.confirm_password}
+                                    onChange={event => this.setValue("confirm_password", event.target.value)}
+                                />
+                            </div>
                             <div className="text-center mt-3">
-                                <button className="btn btn-primary" onClick={event => this.login()}>Login</button>
+                                <button className="btn btn-primary" onClick={event => this.register()}>Register</button>
                             </div>
                         </div>
                     </div>
@@ -70,4 +94,4 @@ class Login extends PureComponent {
     }
 }
 
-export default Login;
+export default Register;

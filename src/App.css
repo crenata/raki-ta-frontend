@@ -12,13 +12,6 @@
     overflow: auto;
 }
 
-.font-family-dancing-script {
-    font-family: "Dancing Script", cursive;
-}
-.font-family-great-vibes {
-    font-family: "Great Vibes", cursive;
-}
-
 @media (prefers-reduced-motion: no-preference) {
     .logo {
         animation: logo-spin infinite 20s linear;
@@ -30,23 +23,6 @@
     }
     to {
         transform: rotate(360deg);
-    }
-}
-
-.typing {
-    width: 15ch;
-    animation: typing 2s steps(15), blink .5s step-end infinite alternate;
-    overflow: hidden;
-    border-right: 2px solid;
-}
-@keyframes typing {
-    from {
-        width: 0;
-    }
-}
-@keyframes blink {
-    50% {
-        border-color: transparent;
     }
 }
 
@@ -81,17 +57,11 @@
     background-color: #CBD3D5 !important;
 }
 
-.bgc-white-opacity-95 {
-    background-color: rgba(255, 255, 255, 0.95) !important;
+.auth-form {
+    width: 100%;
 }
-.bgc-1C152D-opacity-95 {
-    background-color: rgba(28, 21, 45, 0.95) !important;
-}
-
-.border-radius-1rem {
-    border-radius: 1rem !important;
-}
-
-.box-shadow-primary {
-    box-shadow: 0 0 20px 10px #0FF;
+@media (min-width: 576px) {
+    .auth-form {
+        width: 40%;
+    }
 }
