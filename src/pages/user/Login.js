@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import Template from "../../template/Template";
+import Template from "../../template/user/Template";
 import Config from "../../configs/Config";
 import {toast} from "react-toastify";
 
@@ -24,7 +24,7 @@ class Login extends PureComponent {
                 toast.success("Logged in...");
                 localStorage.setItem(Config.UserTokenKey, response.data.data.token);
                 setTimeout(() => {
-                    location.href = Config.Links.Home;
+                    window.location.href = Config.Links.Home;
                 }, 1000);
             }
         });

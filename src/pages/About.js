@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import Template from "../template/Template";
+import Template from "../template/user/Template";
 
 class About extends PureComponent {
     render() {

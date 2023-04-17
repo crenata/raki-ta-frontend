@@ -1,16 +1,14 @@
 import React, {PureComponent} from "react";
-import Template from "../../template/user/Template";
+import Template from "../../template/admin/Template";
 import Config from "../../configs/Config";
 import {toast} from "react-toastify";
 
-class Register extends PureComponent {
+class Login extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
             email: "",
-            password: "",
-            confirm_password: ""
+            password: ""
         };
     }
 
@@ -20,13 +18,13 @@ class Register extends PureComponent {
         });
     }
 
-    register() {
-        Config.AxiosUser.post("auth/register", this.state).then(response => {
+    login() {
+        Config.AxiosAdmin.post("auth/login", this.state).then(response => {
             if (response) {
-                toast.success("Successfully register!");
-                localStorage.setItem(Config.UserTokenKey, response.data.data.token);
+                toast.success("Logged in...");
+                localStorage.setItem(Config.AdminTokenKey, response.data.data.token);
                 setTimeout(() => {
-                    window.location.href = Config.Links.Home;
+                    window.location.href = Config.Links.Admin.Index;
                 }, 1000);
             }
         });
@@ -38,18 +36,7 @@ class Register extends PureComponent {
                 <div className="container">
                     <div className="d-flex justify-content-center">
                         <div className="auth-form shadow rounded p-3">
-                            <h3 className="m-0 text-center">Register</h3>
-                            <div className="mt-3">
-                                <label htmlFor="name" className="form-label">Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="name"
-                                    placeholder="name@example.com"
-                                    value={this.state.name}
-                                    onChange={event => this.setValue("name", event.target.value)}
-                                />
-                            </div>
+                            <h3 className="m-0 text-center">Login</h3>
                             <div className="mt-3">
                                 <label htmlFor="email" className="form-label">Email</label>
                                 <input
@@ -72,19 +59,8 @@ class Register extends PureComponent {
                                     onChange={event => this.setValue("password", event.target.value)}
                                 />
                             </div>
-                            <div className="mt-3">
-                                <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    id="confirm-password"
-                                    placeholder="confirm password"
-                                    value={this.state.confirm_password}
-                                    onChange={event => this.setValue("confirm_password", event.target.value)}
-                                />
-                            </div>
                             <div className="text-center mt-3">
-                                <button className="btn btn-primary" onClick={event => this.register()}>Register</button>
+                                <button className="btn btn-primary" onClick={event => this.login()}>Login</button>
                             </div>
                         </div>
                     </div>
@@ -94,4 +70,4 @@ class Register extends PureComponent {
     }
 }
 
-export default Register;
+export default Login;

@@ -1,10 +1,10 @@
 import React, {PureComponent} from "react";
-import Template from "../template/user/Template";
+import Template from "../../template/admin/Template";
 
 class Home extends PureComponent {
     render() {
         return (
-            <Template>Home</Template>
+            <Template>Admin Dashboard</Template>
         );
     }
 }

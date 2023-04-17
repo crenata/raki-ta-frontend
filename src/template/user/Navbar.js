@@ -1,9 +1,8 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
-import Config from "../configs/Config";
-import logo from "../images/logo.svg";
-import IsEmpty from "../helpers/IsEmpty";
-import "./Navbar.css";
+import Config from "../../configs/Config";
+import logo from "../../images/logo.svg";
+import IsEmpty from "../../helpers/IsEmpty";
 import {toast} from "react-toastify";
 
 class Navbar extends PureComponent {
@@ -13,7 +12,7 @@ class Navbar extends PureComponent {
                 toast.success("Logged Out...");
                 localStorage.removeItem(Config.UserTokenKey);
                 setTimeout(() => {
-                    location.href = Config.Links.Home;
+                    window.location.href = Config.Links.Home;
                 }, 1000);
             }
         });

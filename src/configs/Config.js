@@ -9,7 +9,7 @@ const adminToken = localStorage.getItem(adminTokenKey);
 const userToken = localStorage.getItem(userTokenKey);
 
 const interceptorsError = error => {
-    if (error.response) {
+    if (error.response.data) {
         if (error.response.data.status === 500) {
             toast.error(error.response.data.message);
         } else {
@@ -49,14 +49,22 @@ const Config = {
         Login: "login",
         Register: "register",
         About: "about",
-        SubmitObservation: "submit-observation"
+        SubmitObservation: "submit-observation",
+        Admin: {
+            Index: "admin",
+            Login: "login"
+        }
     },
     Links: {
         Home: "/",
         Login: "/login",
         Register: "/register",
         About: "/about",
-        SubmitObservation: "/submit-observation"
+        SubmitObservation: "/submit-observation",
+        Admin: {
+            Index: "/admin",
+            Login: "/admin/login"
+        }
     },
     AdminTokenKey: adminTokenKey,
     UserTokenKey: userTokenKey,
