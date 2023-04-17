@@ -57,6 +57,16 @@
     background-color: #CBD3D5 !important;
 }
 
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.observation-list {
+    max-height: 30rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .auth-form {
     width: 100%;
 }

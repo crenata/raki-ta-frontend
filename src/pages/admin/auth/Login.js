@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
-import Template from "../../template/user/Template";
-import Config from "../../configs/Config";
+import Template from "../../../template/admin/Template";
+import Config from "../../../configs/Config";
 import {toast} from "react-toastify";
 
 class Login extends PureComponent {
@@ -19,12 +19,12 @@ class Login extends PureComponent {
     }
 
     login() {
-        Config.AxiosUser.post("auth/login", this.state).then(response => {
+        Config.AxiosAdmin.post("auth/login", this.state).then(response => {
             if (response) {
                 toast.success("Logged in...");
-                localStorage.setItem(Config.UserTokenKey, response.data.data.token);
+                localStorage.setItem(Config.AdminTokenKey, response.data.data.token);
                 setTimeout(() => {
-                    window.location.href = Config.Links.Home;
+                    window.location.href = Config.Links.Admin.Index;
                 }, 1000);
             }
         });

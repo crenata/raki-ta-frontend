@@ -22,8 +22,12 @@ class Template extends PureComponent {
                         >
                             {context.loading ? <Loading /> : <>
                                 <Navbar />
-                                <div className="py-3">
-                                    {this.props.children}
+                                <div className="pt-5">
+                                    <div className="pt-3">
+                                        <div className="py-3">
+                                            {this.props.children}
+                                        </div>
+                                    </div>
                                 </div>
                             </>}
                         </CSSTransition>

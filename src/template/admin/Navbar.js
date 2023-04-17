@@ -20,7 +20,7 @@ class Navbar extends PureComponent {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg bgc-1F1E30">
+            <nav className="navbar navbar-expand-lg fixed-top bgc-1F1E30">
                 <div className="container-fluid bgc-1F1E30">
                     <Link to={Config.Links.Admin.Index} className="navbar-brand text-white d-flex align-items-center">
                         <img
