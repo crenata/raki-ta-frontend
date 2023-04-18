@@ -61,6 +61,10 @@
     object-fit: cover;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .observation-list {
     max-height: 30rem;
     overflow-x: hidden;

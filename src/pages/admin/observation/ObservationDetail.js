@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import Template from "../../../template/user/Template";
 import Config from "../../../configs/Config";
 import MapPicker from "react-google-map-picker";
+import {toast} from "react-toastify";
+import IsEmpty from "../../../helpers/IsEmpty";
 
 class ObservationDetail extends PureComponent {
     constructor(props) {
@@ -30,13 +32,31 @@ class ObservationDetail extends PureComponent {
     }
 
     getData() {
-        Config.AxiosUser.get(`observation/get/detail/${this.props.params.id}`).then(response => {
+        Config.AxiosAdmin.get(`observation/get/detail/${this.props.params.id}`).then(response => {
             if (response) {
                 response.data.data.latitude = parseInt(response.data.data.latitude);
                 response.data.data.longitude = parseInt(response.data.data.longitude);
                 this.setState({
                     observation: response.data.data
                 });
+            }
+        });
+    }
+
+    approve() {
+        Config.AxiosAdmin.get(`observation/approve/${this.props.params.id}`).then(response => {
+            if (response) {
+                toast.success("Successfully approved!");
+                this.props.navigate(Config.Links.Admin.Index);
+            }
+        });
+    }
+
+    reject() {
+        Config.AxiosAdmin.get(`observation/reject/${this.props.params.id}`).then(response => {
+            if (response) {
+                toast.success("Successfully rejected!");
+                this.props.navigate(Config.Links.Admin.Index);
             }
         });
     }
@@ -92,6 +112,10 @@ class ObservationDetail extends PureComponent {
                                 <img src={this.state.observation.image} alt="Observation Image" className="w-100" />
                             </div>
                         </div>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-center mt-3">
+                        <button className="btn btn-danger" onClick={event => this.reject()}>Reject</button>
+                        <button className="btn btn-primary ms-3" onClick={event => this.approve()}>Approve</button>
                     </div>
                 </div>
             </Template>

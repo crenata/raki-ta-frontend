@@ -150,7 +150,7 @@ class ObservationAdd extends PureComponent {
                                         longitude: lng
                                     })}
                                     onChangeZoom={zoom => this.setValue("zoom", zoom)}
-                                    apiKey="AIzaSyAkBhTU6Tc8FNdu64ZRG4rPm2bin7H7OOI"
+                                    apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
                                 />
                             </div>
                         </div>

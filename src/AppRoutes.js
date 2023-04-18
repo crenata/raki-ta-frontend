@@ -10,6 +10,8 @@ import {default as UserHome} from "./pages/Home";
 import {default as AdminHome} from "./pages/admin/Home";
 import {default as AdminLogin} from "./pages/admin/auth/Login";
 import ObservationAdd from "./pages/user/observation/ObservationAdd";
+import {default as UserObservationDetail} from "./pages/user/observation/ObservationDetail";
+import {default as AdminObservationDetail} from "./pages/admin/observation/ObservationDetail";
 
 class AppRoutes extends PureComponent {
     render() {
@@ -20,10 +22,12 @@ class AppRoutes extends PureComponent {
                     <Route path={Config.Routers.Login} element={<RouteElement component={UserLogin} />} />
                     <Route path={Config.Routers.Register} element={<RouteElement component={UserRegister} />} />
                     <Route path={Config.Routers.Home} element={<RouteElement component={UserHome} />} />
-                    <Route path={Config.Routers.SubmitObservation} element={<RouteElement component={ObservationAdd} />} />
+                    <Route path={Config.Routers.ObservationAdd} element={<RouteElement component={ObservationAdd} />} />
+                    <Route path={Config.Routers.ObservationDetail} element={<RouteElement component={UserObservationDetail} />} />
                     <Route path={Config.Routers.Admin.Index} element={<Outlet />}>
                         <Route index element={<RouteElement component={AdminHome} />} />
                         <Route path={Config.Routers.Admin.Login} element={<RouteElement component={AdminLogin} />} />
+                        <Route path={Config.Routers.Admin.ObservationDetail} element={<RouteElement component={AdminObservationDetail} />} />
                     </Route>
                     <Route path={Config.Routers.NotFound} element={<RouteElement component={NotFound} />} />
                 </Routes>

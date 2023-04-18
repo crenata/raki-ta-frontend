@@ -62,7 +62,7 @@ class Navbar extends PureComponent {
                                 </li>
                             </> : <>
                                 <li className="nav-item">
-                                    <Link to={Config.Links.SubmitObservation} className="nav-link text-white">
+                                    <Link to={Config.Links.ObservationAdd} className="nav-link text-white">
                                         <p className="m-0">Submit Observation</p>
                                     </Link>
                                 </li>

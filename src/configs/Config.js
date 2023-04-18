@@ -49,10 +49,12 @@ const Config = {
         Login: "login",
         Register: "register",
         About: "about",
-        SubmitObservation: "submit-observation",
+        ObservationAdd: "submit-observation",
+        ObservationDetail: "observation/:id",
         Admin: {
             Index: "admin",
-            Login: "login"
+            Login: "login",
+            ObservationDetail: "observation/:id"
         }
     },
     Links: {
@@ -60,10 +62,12 @@ const Config = {
         Login: "/login",
         Register: "/register",
         About: "/about",
-        SubmitObservation: "/submit-observation",
+        ObservationAdd: "/submit-observation",
+        ObservationDetail: "/observation/:id",
         Admin: {
             Index: "/admin",
-            Login: "/admin/login"
+            Login: "/admin/login",
+            ObservationDetail: "/admin/observation/:id"
         }
     },
     AdminTokenKey: adminTokenKey,
