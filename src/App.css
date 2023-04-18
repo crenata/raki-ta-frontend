@@ -65,6 +65,20 @@
     cursor: pointer;
 }
 
+.notification-list {
+    display: none;
+    width: 18rem;
+    height: 25rem;
+    position: absolute;
+    top: 2.5rem;
+    transform: translateX(-70%);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.notification-badge:hover .notification-list {
+    display: block;
+}
+
 #observation-list {
     max-height: 30rem;
     overflow-x: hidden;
