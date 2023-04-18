@@ -139,7 +139,7 @@ class ObservationAdd extends PureComponent {
                                     />
                                 </div>
                             </div>
-                            <div className="col-12 col-md-6">
+                            <div className="col-12 col-md-6 mt-3 mt-md-0">
                                 <MapPicker
                                     defaultLocation={{lat: this.state.latitude, lng: this.state.longitude}}
                                     zoom={this.state.zoom}

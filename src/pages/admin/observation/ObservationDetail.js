@@ -82,7 +82,7 @@ class ObservationDetail extends PureComponent {
                                 apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
                             />
                         </div>
-                        <div className="col-12 col-md-6">
+                        <div className="col-12 col-md-6 mt-3 mt-md-0">
                             <div className="">
                                 <p className="m-0">Species Name</p>
                                 <p className="m-0">{this.state.observation.name}</p>
