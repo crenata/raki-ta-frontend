@@ -19,16 +19,16 @@ class Home extends PureComponent {
     }
 
     getData() {
-        if (!this.state.isLoading) {
+        if (!this.state.isLoading && !this.state.isLastPage) {
             this.setState({
                 isLoading: true
             }, () => {
-                Config.AxiosUser.get("observation/get", {page: this.state.page}).then(response => {
+                Config.AxiosUser.get(`observation/get?page=${this.state.page}`).then(response => {
                     if (response) {
                         const lastPage = response.data.data.last_page;
                         const isLastPage = lastPage === this.state.page;
                         this.setState({
-                            observations: response.data.data.data,
+                            observations: [...this.state.observations, ...response.data.data.data],
                             page: isLastPage ? this.state.page : this.state.page + 1,
                             isLastPage: isLastPage
                         });
@@ -52,7 +52,7 @@ class Home extends PureComponent {
                                 <p className="m-0 text-center">Observations</p>
                                 <div className="mt-3">
                                     {this.state.observations.length > 0 ?
-                                        <div className="observation-list">
+                                        <div id="observation-list">
                                             {this.state.observations.map(value => (
                                                 <Link to={Config.Links.ObservationDetail.replace(":id", value.id)} className="border text-decoration-none text-body mt-3" key={value.id}>
                                                     <div className="row">

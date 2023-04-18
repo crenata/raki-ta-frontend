@@ -65,8 +65,14 @@
     cursor: pointer;
 }
 
-.observation-list {
+#observation-list {
     max-height: 30rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#comment-section {
+    height: 20rem;
     overflow-x: hidden;
     overflow-y: auto;
 }

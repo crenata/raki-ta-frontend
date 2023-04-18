@@ -19,16 +19,16 @@ class Home extends PureComponent {
     }
 
     getData() {
-        if (!this.state.isLoading) {
+        if (!this.state.isLoading && !this.state.isLastPage) {
             this.setState({
                 isLoading: true
             }, () => {
-                Config.AxiosAdmin.get("observation/get", {page: this.state.page}).then(response => {
+                Config.AxiosAdmin.get(`observation/get?page=${this.state.page}`).then(response => {
                     if (response) {
                         const lastPage = response.data.data.last_page;
                         const isLastPage = lastPage === this.state.page;
                         this.setState({
-                            observations: response.data.data.data,
+                            observations: [...this.state.observations, ...response.data.data.data],
                             page: isLastPage ? this.state.page : this.state.page + 1,
                             isLastPage: isLastPage
                         });
