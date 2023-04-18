@@ -8,17 +8,6 @@ const userTokenKey = "user_token";
 const adminToken = localStorage.getItem(adminTokenKey);
 const userToken = localStorage.getItem(userTokenKey);
 
-const interceptorsError = error => {
-    if (error.response.data) {
-        if (error.response.data.status === 500) {
-            toast.error(error.response.data.message);
-        } else {
-            toast.warn(error.response.data.message);
-        }
-    } else {
-        toast.error("Whoops, something went wrong!");
-    }
-}
 const instanceAdmin = () => {
     const instance = axios.create({
         baseURL: `${process.env.REACT_APP_BASE_URL}/admin`,
@@ -77,5 +66,22 @@ const Config = {
     AxiosAdmin: instanceAdmin(),
     AxiosUser: instanceUser()
 };
+
+const interceptorsError = error => {
+    if (error.response.data) {
+        if (error.response.data.status === 401) {
+            toast.error(error.response.data.message);
+            setTimeout(() => {
+                window.location.href = Config.Links.Home;
+            }, 1000);
+        } else if (error.response.data.status === 500) {
+            toast.error(error.response.data.message);
+        } else {
+            toast.warn(error.response.data.message);
+        }
+    } else {
+        toast.error("Whoops, something went wrong!");
+    }
+}
 
 export default Config;
