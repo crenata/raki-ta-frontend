@@ -58,7 +58,7 @@ class ObservationDetail extends PureComponent {
         });
     }
 
-    getComment() {
+    getComment(isReload = false) {
         if (!this.state.isLoading && !this.state.isLastPage) {
             this.setState({
                 isLoading: true
@@ -67,11 +67,23 @@ class ObservationDetail extends PureComponent {
                     if (response) {
                         const lastPage = response.data.data.last_page;
                         const isLastPage = lastPage === this.state.page;
-                        this.setState({
-                            comments: [...this.state.comments, ...response.data.data.data],
-                            page: isLastPage ? this.state.page : this.state.page + 1,
-                            isLastPage: isLastPage
-                        });
+                        if (isReload) {
+                            this.setState({
+                                comments: []
+                            }, () => {
+                                this.setState({
+                                    comments: [...this.state.comments, ...response.data.data.data],
+                                    page: isLastPage ? this.state.page : this.state.page + 1,
+                                    isLastPage: isLastPage
+                                });
+                            });
+                        } else {
+                            this.setState({
+                                comments: [...this.state.comments, ...response.data.data.data],
+                                page: isLastPage ? this.state.page : this.state.page + 1,
+                                isLastPage: isLastPage
+                            });
+                        }
                     }
                 }).finally(() => {
                     this.setState({
@@ -94,9 +106,10 @@ class ObservationDetail extends PureComponent {
                     if (response) {
                         toast.success("Successfully submitted!");
                         this.setState({
-                            comment: ""
+                            comment: "",
+                            isLastPage: false
                         }, () => {
-                            this.getComment();
+                            this.getComment(true);
                         });
                     }
                 }).finally(() => {

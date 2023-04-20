@@ -8,12 +8,12 @@ const userTokenKey = "user_token";
 const adminToken = localStorage.getItem(adminTokenKey);
 const userToken = localStorage.getItem(userTokenKey);
 
-const interceptorsError = error => {
+const interceptorsError = (error, tokenKey) => {
     if (error.response.data) {
         if (error.response.data.status === 401) {
             toast.error(error.response.data.message);
             setTimeout(() => {
-                window.location.href = "/";
+                window.location.href = tokenKey === adminTokenKey ? "/admin/login" : "/login";
             }, 1000);
         } else if (error.response.data.status === 500) {
             toast.error(error.response.data.message);
@@ -31,7 +31,7 @@ const instanceAdmin = () => {
             authorization: `Bearer ${adminToken}`
         }
     });
-    instance.interceptors.response.use(response => response, interceptorsError);
+    instance.interceptors.response.use(response => response, error => interceptorsError(error, adminTokenKey));
     loadProgressBar(null, instance);
     return instance;
 };
@@ -42,7 +42,7 @@ const instanceUser = () => {
             authorization: `Bearer ${userToken}`
         }
     });
-    instance.interceptors.response.use(response => response, interceptorsError);
+    instance.interceptors.response.use(response => response, error => interceptorsError(error, userTokenKey));
     loadProgressBar(null, instance);
     return instance;
 };
