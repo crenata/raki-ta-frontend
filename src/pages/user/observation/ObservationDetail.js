@@ -107,7 +107,8 @@ class ObservationDetail extends PureComponent {
                         toast.success("Successfully submitted!");
                         this.setState({
                             comment: "",
-                            isLastPage: false
+                            isLastPage: false,
+                            page: 1
                         }, () => {
                             this.getComment(true);
                         });
