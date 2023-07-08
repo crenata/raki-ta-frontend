@@ -46,33 +46,30 @@ class Home extends PureComponent {
         return (
             <Template>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-md-6">
-                            <div className="border rounded p-3">
-                                <p className="m-0 text-center">Observations</p>
-                                <div className="mt-3">
-                                    {this.state.observations.length > 0 ?
-                                        <div id="observation-list">
-                                            {this.state.observations.map(value => (
-                                                <Link to={Config.Links.ObservationDetail.replace(":id", value.id)} className="border text-decoration-none text-body mt-3" key={value.id}>
-                                                    <div className="row">
-                                                        <div className="col-4 d-flex align-items-center">
-                                                            <img src={value.image} alt="Observation Image" className="w-100 h-100 object-fit-cover" />
-                                                        </div>
-                                                        <div className="col-8 d-flex align-items-center">
-                                                            <div className="">
-                                                                <p className="m-0">{value.name}</p>
-                                                                <p className="m-0 small">{value.location}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            ))}
-                                        </div> :
-                                        <p className="m-0 text-center">Empty</p>}
+                    <h3 className="m-0 text-center">Observations</h3>
+                    <div className="">
+                        {this.state.observations.length > 0 ?
+                            <div id="observation-list">
+                                <div className="row">
+                                    {this.state.observations.map(value => (
+                                        <div className="col-12 col-md-4 mt-3" key={value.id}>
+                                            <div className="card">
+                                                <img src={value.image} alt="Observation Image"
+                                                     className="card-img-top object-fit-cover" style={{height: "16rem"}}/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{value.name}</h5>
+                                                    <p className="card-text">{value.location}</p>
+                                                    <Link to={Config.Links.ObservationDetail.replace(":id", value.id)}
+                                                          className="btn btn-primary">
+                                                        See Detail
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            </div>
-                        </div>
+                            </div> :
+                            <p className="mt-3 text-center">Empty</p>}
                     </div>
                 </div>
             </Template>

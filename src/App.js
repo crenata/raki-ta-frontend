@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
 import "react-toastify/dist/ReactToastify.min.css";
 import {ToastContainer} from "react-toastify";
+import "leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet";
 
 class App extends PureComponent {
     constructor(props) {

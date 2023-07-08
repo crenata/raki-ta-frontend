@@ -59,7 +59,8 @@ const Config = {
         Admin: {
             Index: "admin",
             Login: "login",
-            ObservationDetail: "observation/:id"
+            ObservationDetail: "observation/:id",
+            ObservationEdit: "observation-edit/:id"
         }
     },
     Links: {
@@ -72,7 +73,8 @@ const Config = {
         Admin: {
             Index: "/admin",
             Login: "/admin/login",
-            ObservationDetail: "/admin/observation/:id"
+            ObservationDetail: "/admin/observation/:id",
+            ObservationEdit: "/admin/observation-edit/:id"
         }
     },
     AdminTokenKey: adminTokenKey,

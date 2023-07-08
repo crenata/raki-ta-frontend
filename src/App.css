@@ -4,7 +4,7 @@
 @import url("fonts/Roboto-Slab/RobotoSlab.css");
 
 .app {
-    font-family: "Merienda", cursive;
+    font-family: "Roboto Slab", sans-serif;
     min-height: 100vh;
 }
 .app-content {
@@ -79,7 +79,12 @@
     display: block;
 }
 
-#observation-list {
+.observation-list {
+    max-height: 30rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.approved-observation-list {
     max-height: 30rem;
     overflow-x: hidden;
     overflow-y: auto;
@@ -101,4 +106,7 @@
         width: 18rem;
         transform: translateX(-70%);
     }
+}
+.some-margin {
+    display: none;
 }

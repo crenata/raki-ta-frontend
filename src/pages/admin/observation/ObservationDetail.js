@@ -3,7 +3,7 @@ import Template from "../../../template/user/Template";
 import Config from "../../../configs/Config";
 import MapPicker from "react-google-map-picker";
 import {toast} from "react-toastify";
-import IsEmpty from "../../../helpers/IsEmpty";
+import {Link} from "react-router-dom";
 
 class ObservationDetail extends PureComponent {
     constructor(props) {
@@ -31,11 +31,34 @@ class ObservationDetail extends PureComponent {
         this.getData();
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        document.getElementById("map")?.remove();
+        let mapElement = document.createElement("div");
+        mapElement.id = "map";
+        mapElement.style.height = "24rem";
+        document.getElementById("map-container").appendChild(mapElement);
+        if (this.state.observation.latitude && this.state.observation.longitude) {
+            const map = new window.L.map("map").setView([this.state.observation.latitude, this.state.observation.longitude], 10);
+            window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            window.L.marker([this.state.observation.latitude, this.state.observation.longitude], {
+                icon: window.L.icon({
+                    iconUrl: "/marker.png",
+                    iconSize: [60, 60],
+                    iconAnchor: [35, 70],
+                    popupAnchor:  [-5, -60]
+                })
+            }).addTo(map);
+        }
+    }
+
     getData() {
         Config.AxiosAdmin.get(`observation/get/detail/${this.props.params.id}`).then(response => {
             if (response) {
-                response.data.data.latitude = parseInt(response.data.data.latitude);
-                response.data.data.longitude = parseInt(response.data.data.longitude);
+                response.data.data.latitude = parseFloat(response.data.data.latitude);
+                response.data.data.longitude = parseFloat(response.data.data.longitude);
                 this.setState({
                     observation: response.data.data
                 });
@@ -61,6 +84,15 @@ class ObservationDetail extends PureComponent {
         });
     }
 
+    delete() {
+        Config.AxiosAdmin.delete(`observation/delete/${this.props.params.id}`).then(response => {
+            if (response) {
+                toast.success("Successfully deleted!");
+                this.props.navigate(Config.Links.Admin.Index);
+            }
+        });
+    }
+
     setValue(field, value) {
         this.setState({
             [field]: value
@@ -73,14 +105,7 @@ class ObservationDetail extends PureComponent {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-6">
-                            <MapPicker
-                                defaultLocation={{lat: this.state.observation.latitude, lng: this.state.observation.longitude}}
-                                zoom={this.state.zoom}
-                                mapTypeId="roadmap"
-                                className="w-100"
-                                onChangeZoom={zoom => this.setValue("zoom", zoom)}
-                                apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-                            />
+                            <div id="map-container"/>
                         </div>
                         <div className="col-12 col-md-6 mt-3 mt-md-0">
                             <div className="">
@@ -113,10 +138,16 @@ class ObservationDetail extends PureComponent {
                             </div>
                         </div>
                     </div>
+                    {this.state.observation?.latest_history?.status === 1 &&
                     <div className="d-flex align-items-center justify-content-center mt-3">
                         <button className="btn btn-danger" onClick={event => this.reject()}>Reject</button>
                         <button className="btn btn-primary ms-3" onClick={event => this.approve()}>Approve</button>
-                    </div>
+                    </div>}
+                    {this.state.observation?.latest_history?.status === 3 &&
+                    <div className="d-flex align-items-center justify-content-center mt-3">
+                        <button className="btn btn-danger" onClick={event => this.delete()}>Delete</button>
+                        <Link to={Config.Links.Admin.ObservationEdit.replace(":id", this.state.observation.id)} className="btn btn-primary ms-3">Edit</Link>
+                    </div>}
                 </div>
             </Template>
         );

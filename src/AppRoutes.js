@@ -12,6 +12,7 @@ import {default as AdminLogin} from "./pages/admin/auth/Login";
 import ObservationAdd from "./pages/user/observation/ObservationAdd";
 import {default as UserObservationDetail} from "./pages/user/observation/ObservationDetail";
 import {default as AdminObservationDetail} from "./pages/admin/observation/ObservationDetail";
+import ObservationEdit from "./pages/admin/observation/ObservationEdit";
 
 class AppRoutes extends PureComponent {
     render() {
@@ -28,6 +29,7 @@ class AppRoutes extends PureComponent {
                         <Route index element={<RouteElement component={AdminHome} />} />
                         <Route path={Config.Routers.Admin.Login} element={<RouteElement component={AdminLogin} />} />
                         <Route path={Config.Routers.Admin.ObservationDetail} element={<RouteElement component={AdminObservationDetail} />} />
+                        <Route path={Config.Routers.Admin.ObservationEdit} element={<RouteElement component={ObservationEdit} />} />
                     </Route>
                     <Route path={Config.Routers.NotFound} element={<RouteElement component={NotFound} />} />
                 </Routes>

@@ -1,10 +1,10 @@
 import React, {PureComponent} from "react";
-import Template from "../../../template/user/Template";
+import Template from "../../../template/admin/Template";
 import Config from "../../../configs/Config";
 import {toast} from "react-toastify";
 import LocationPicker from "react-leaflet-location-picker";
 
-class ObservationAdd extends PureComponent {
+class ObservationEdit extends PureComponent {
     constructor(props) {
         super(props);
         this.initialState = {
@@ -23,6 +23,24 @@ class ObservationAdd extends PureComponent {
         };
     }
 
+    componentDidMount() {
+        this.getData();
+    }
+
+    getData() {
+        Config.AxiosAdmin.get(`observation/get/detail/${this.props.params.id}`).then(response => {
+            if (response) {
+                response.data.data.latitude = parseFloat(response.data.data.latitude);
+                response.data.data.longitude = parseFloat(response.data.data.longitude);
+                Object.keys(response.data.data).forEach(value => {
+                    this.setState({
+                        [value]: response.data.data[value]
+                    });
+                });
+            }
+        });
+    }
+
     setValue(field, value) {
         this.setState({
             [field]: value
@@ -38,12 +56,10 @@ class ObservationAdd extends PureComponent {
                 Object.keys(this.state).forEach(value => {
                     formData.append(value, this.state[value]);
                 });
-                Config.AxiosUser.post("observation/add", formData).then(response => {
+                Config.AxiosAdmin.post("observation/edit", formData).then(response => {
                     if (response) {
-                        toast.success("Successfully submitted!");
-                        this.setState({
-                            ...this.initialState
-                        });
+                        toast.success("Successfully updated!");
+                        this.props.navigate(Config.Links.Admin.Index);
                     }
                 }).finally(() => {
                     this.setState({
@@ -59,7 +75,7 @@ class ObservationAdd extends PureComponent {
             <Template>
                 <div className="container">
                     <div className="shadow rounded p-3">
-                        <h3 className="m-0 text-center">Submit Observation</h3>
+                        <h3 className="m-0 text-center">Edit Observation</h3>
                         <div className="row mt-3">
                             <div className="col-12 col-md-6">
                                 <div className="">
@@ -168,4 +184,4 @@ class ObservationAdd extends PureComponent {
     }
 }
 
-export default ObservationAdd;
+export default ObservationEdit;
