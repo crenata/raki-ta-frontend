@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import Template from "../../../template/user/Template";
 import Config from "../../../configs/Config";
-import MapPicker from "react-google-map-picker";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
 
@@ -48,7 +47,7 @@ class ObservationDetail extends PureComponent {
                     iconUrl: "/marker.png",
                     iconSize: [60, 60],
                     iconAnchor: [35, 70],
-                    popupAnchor:  [-5, -60]
+                    popupAnchor: [-5, -60]
                 })
             }).addTo(map);
         }
@@ -89,6 +88,15 @@ class ObservationDetail extends PureComponent {
             if (response) {
                 toast.success("Successfully deleted!");
                 this.props.navigate(Config.Links.Admin.Index);
+            }
+        });
+    }
+
+    deleteComment(id) {
+        Config.AxiosAdmin.delete(`observation/comment/${id}`).then(response => {
+            if (response) {
+                toast.success("Successfully deleted!");
+                this.getData();
             }
         });
     }
@@ -135,7 +143,7 @@ class ObservationDetail extends PureComponent {
                             </div>
                             <div className="mt-3">
                                 <p className="m-0">Image</p>
-                                <img src={this.state.observation.image} alt="Observation Image" className="w-100" />
+                                <img src={this.state.observation.image} alt="Observation Image" className="w-100"/>
                             </div>
                         </div>
                     </div>
@@ -147,8 +155,29 @@ class ObservationDetail extends PureComponent {
                     {this.state.observation?.latest_history?.status === 3 &&
                     <div className="d-flex align-items-center justify-content-center mt-3">
                         <button className="btn btn-danger" onClick={event => this.delete()}>Delete</button>
-                        <Link to={Config.Links.Admin.ObservationEdit.replace(":id", this.state.observation.id)} className="btn btn-primary ms-3">Edit</Link>
+                        <Link to={Config.Links.Admin.ObservationEdit.replace(":id", this.state.observation.id)}
+                              className="btn btn-primary ms-3">Edit</Link>
                     </div>}
+                    <h4 className="m-0">Comment</h4>
+                    <div className="mt-3">
+                        {this.state.observation.comments?.map((value, index) => (
+                            <div className={index > 0 && "mt-3"} key={value.id}>
+                                <div className="d-flex align-items-center">
+                                    <p className="m-0">{value.user.name}</p>
+                                    <button className="btn btn-sm btn-danger ms-3" onClick={event => this.deleteComment(value.id)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                             className="bi bi-trash" viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                            <path
+                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p className="m-0">{value.comment}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </Template>
         );
