@@ -106,6 +106,7 @@ class ObservationDetail extends PureComponent {
                     <div className="row">
                         <div className="col-12 col-md-6">
                             <div id="map-container"/>
+                            <p className="mt-2 mb-0">Observer : {this.state.observation.user?.name}</p>
                         </div>
                         <div className="col-12 col-md-6 mt-3 mt-md-0">
                             <div className="">
