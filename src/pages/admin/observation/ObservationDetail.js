@@ -17,7 +17,7 @@ class ObservationDetail extends PureComponent {
                 longitude: 0,
                 location: "",
                 description: "",
-                image: "",
+                images: [],
                 created_at: "",
                 updated_at: "",
                 deleted_at: null
@@ -113,7 +113,36 @@ class ObservationDetail extends PureComponent {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-6">
-                            <div id="map-container"/>
+                            <div id="carousel-images" className="carousel slide">
+                                <div className="carousel-indicators">
+                                    {this.state.observation.images.map((value, index) => (
+                                        <button
+                                            data-bs-target="#carousel-images"
+                                            data-bs-slide-to={index}
+                                            className={index === 0 ? "active" : ""}
+                                            aria-label={`Slide ${index + 1}`}
+                                        />
+                                    ))}
+                                </div>
+                                <div className="carousel-inner">
+                                    {this.state.observation.images.map((value, index) => (
+                                        <div className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                                            <img src={value.image} className="d-block w-100 carousel-img" alt="Image"/>
+                                        </div>
+                                    ))}
+                                </div>
+                                <button className="carousel-control-prev" type="button"
+                                        data-bs-target="#carousel-images" data-bs-slide="prev">
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"/>
+                                    <span className="visually-hidden">Previous</span>
+                                </button>
+                                <button className="carousel-control-next" type="button"
+                                        data-bs-target="#carousel-images" data-bs-slide="next">
+                                    <span className="carousel-control-next-icon" aria-hidden="true"/>
+                                    <span className="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <div id="map-container" className="mt-3"/>
                             <p className="mt-2 mb-0">Observer : {this.state.observation.user?.name}</p>
                         </div>
                         <div className="col-12 col-md-6 mt-3 mt-md-0">
@@ -142,8 +171,26 @@ class ObservationDetail extends PureComponent {
                                 <p className="m-0">{this.state.observation.description}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0">Image</p>
-                                <img src={this.state.observation.image} alt="Observation Image" className="w-100"/>
+                                <h4 className="m-0">Comment</h4>
+                                <div className="mt-3">
+                                    {this.state.observation.comments?.map((value, index) => (
+                                        <div className={index > 0 && "mt-3"} key={value.id}>
+                                            <div className="d-flex align-items-center">
+                                                <p className="m-0">{value.user.name}</p>
+                                                <button className="btn btn-sm btn-danger ms-3" onClick={event => this.deleteComment(value.id)}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                         className="bi bi-trash" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                                        <path
+                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <p className="m-0">{value.comment}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -158,26 +205,6 @@ class ObservationDetail extends PureComponent {
                         <Link to={Config.Links.Admin.ObservationEdit.replace(":id", this.state.observation.id)}
                               className="btn btn-primary ms-3">Edit</Link>
                     </div>}
-                    <h4 className="m-0">Comment</h4>
-                    <div className="mt-3">
-                        {this.state.observation.comments?.map((value, index) => (
-                            <div className={index > 0 && "mt-3"} key={value.id}>
-                                <div className="d-flex align-items-center">
-                                    <p className="m-0">{value.user.name}</p>
-                                    <button className="btn btn-sm btn-danger ms-3" onClick={event => this.deleteComment(value.id)}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                             className="bi bi-trash" viewBox="0 0 16 16">
-                                            <path
-                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-                                            <path
-                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <p className="m-0">{value.comment}</p>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </Template>
         );

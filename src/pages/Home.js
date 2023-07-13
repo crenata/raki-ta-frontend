@@ -54,7 +54,7 @@ class Home extends PureComponent {
                                     {this.state.observations.map(value => (
                                         <div className="col-12 col-md-4 mt-3" key={value.id}>
                                             <div className="card">
-                                                <img src={value.image} alt="Observation Image"
+                                                <img src={value.images[0]?.image} alt="Observation Image"
                                                      className="card-img-top object-fit-cover" style={{height: "16rem"}}/>
                                                 <div className="card-body">
                                                     <h5 className="card-title">{value.name}</h5>

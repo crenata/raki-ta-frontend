@@ -15,7 +15,7 @@ class ObservationDetail extends PureComponent {
                 longitude: 0,
                 location: "",
                 description: "",
-                image: "",
+                images: [],
                 created_at: "",
                 updated_at: "",
                 deleted_at: null
@@ -155,7 +155,36 @@ class ObservationDetail extends PureComponent {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-6">
-                            <div id="map-container"/>
+                            <div id="carousel-images" className="carousel slide">
+                                <div className="carousel-indicators">
+                                    {this.state.observation.images.map((value, index) => (
+                                        <button
+                                            data-bs-target="#carousel-images"
+                                            data-bs-slide-to={index}
+                                            className={index === 0 ? "active" : ""}
+                                            aria-label={`Slide ${index + 1}`}
+                                        />
+                                    ))}
+                                </div>
+                                <div className="carousel-inner">
+                                    {this.state.observation.images.map((value, index) => (
+                                        <div className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                                            <img src={value.image} className="d-block w-100 carousel-img" alt="Image"/>
+                                        </div>
+                                    ))}
+                                </div>
+                                <button className="carousel-control-prev" type="button"
+                                        data-bs-target="#carousel-images" data-bs-slide="prev">
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"/>
+                                    <span className="visually-hidden">Previous</span>
+                                </button>
+                                <button className="carousel-control-next" type="button"
+                                        data-bs-target="#carousel-images" data-bs-slide="next">
+                                    <span className="carousel-control-next-icon" aria-hidden="true"/>
+                                    <span className="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <div id="map-container" className="mt-3"/>
                             <p className="mt-2 mb-0">Observer : {this.state.observation.user?.name}</p>
                         </div>
                         <div className="col-12 col-md-6 mt-3 mt-md-0">
@@ -184,32 +213,27 @@ class ObservationDetail extends PureComponent {
                                 <p className="m-0">{this.state.observation.description}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0">Image</p>
-                                <img src={this.state.observation.image} alt="Observation Image" className="w-100" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="mt-3">
-                        <label htmlFor="comment" className="m-0">Comment</label>
-                        <textarea
-                            id="comment"
-                            className="form-control"
-                            placeholder="Comment here..."
-                            rows="4"
-                            value={this.state.comment}
-                            onChange={event => this.setValue("comment", event.target.value)}
-                        />
-                        <div className="text-end mt-3">
-                            <button className="btn btn-primary" onClick={event => this.submit()}>Submit</button>
-                        </div>
-                        <div id="comment-section" className="mt-3">
-                            {this.state.comments.map((value, index) => (
-                                <div className={index > 0 && "mt-3"} key={value.id}>
-                                    <p className="m-0">{value.user.name}</p>
-                                    <p className="m-0">{value.comment}</p>
+                                <label htmlFor="comment" className="m-0">Comment</label>
+                                <textarea
+                                    id="comment"
+                                    className="form-control"
+                                    placeholder="Comment here..."
+                                    rows="4"
+                                    value={this.state.comment}
+                                    onChange={event => this.setValue("comment", event.target.value)}
+                                />
+                                <div className="text-end mt-3">
+                                    <button className="btn btn-primary" onClick={event => this.submit()}>Submit</button>
                                 </div>
-                            ))}
+                                <div id="comment-section" className="mt-3">
+                                    {this.state.comments.map((value, index) => (
+                                        <div className={index > 0 && "mt-3"} key={value.id}>
+                                            <p className="m-0">{value.user.name}</p>
+                                            <p className="m-0">{value.comment}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

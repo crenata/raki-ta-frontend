@@ -14,7 +14,7 @@ class ObservationAdd extends PureComponent {
             latitude: 0,
             longitude: 0,
             description: "",
-            image: ""
+            images: []
         };
         this.state = {
             ...this.initialState,
@@ -36,7 +36,10 @@ class ObservationAdd extends PureComponent {
             }, () => {
                 const formData = new FormData();
                 Object.keys(this.state).forEach(value => {
-                    formData.append(value, this.state[value]);
+                    if (value !== "images") formData.append(value, this.state[value]);
+                });
+                Array.from(this.state.images).forEach(value => {
+                    formData.append("images[]", value);
                 });
                 Config.AxiosUser.post("observation/add", formData).then(response => {
                     if (response) {
@@ -129,13 +132,14 @@ class ObservationAdd extends PureComponent {
                                     />
                                 </div>
                                 <div className="mt-3">
-                                    <label htmlFor="image" className="form-label">Image</label>
+                                    <label htmlFor="images" className="form-label">Images</label>
                                     <input
                                         type="file"
+                                        multiple
                                         className="form-control"
-                                        id="image"
-                                        placeholder="image"
-                                        onChange={event => this.setValue("image", event.target.files[0])}
+                                        id="images"
+                                        placeholder="images"
+                                        onChange={event => this.setValue("images", event.target.files)}
                                     />
                                 </div>
                             </div>

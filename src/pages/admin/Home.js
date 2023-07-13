@@ -99,7 +99,7 @@ class Home extends PureComponent {
                                                 <Link to={Config.Links.Admin.ObservationDetail.replace(":id", value.id)} className="border text-decoration-none text-body mt-3" key={value.id}>
                                                     <div className="row">
                                                         <div className="col-4 d-flex align-items-center">
-                                                            <img src={value.image} alt="Observation Image" className="w-100 h-100 object-fit-cover" />
+                                                            <img src={value.images[0]?.image} alt="Observation Image" className="w-100 object-fit-cover" style={{height: "6rem"}} />
                                                         </div>
                                                         <div className="col-8 d-flex align-items-center">
                                                             <div className="">
@@ -125,7 +125,7 @@ class Home extends PureComponent {
                                                 <Link to={Config.Links.Admin.ObservationDetail.replace(":id", value.id)} className="border text-decoration-none text-body mt-3" key={value.id}>
                                                     <div className="row">
                                                         <div className="col-4 d-flex align-items-center">
-                                                            <img src={value.image} alt="Observation Image" className="w-100 h-100 object-fit-cover" />
+                                                            <img src={value.images[0]?.image} alt="Observation Image" className="w-100 object-fit-cover" style={{height: "6rem"}} />
                                                         </div>
                                                         <div className="col-8 d-flex align-items-center">
                                                             <div className="">

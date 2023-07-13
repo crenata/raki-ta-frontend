@@ -15,6 +15,8 @@ const interceptorsError = (error, tokenKey) => {
             setTimeout(() => {
                 window.location.href = tokenKey === adminTokenKey ? "/admin/login" : "/login";
             }, 1000);
+            if (tokenKey === adminTokenKey) localStorage.removeItem(adminTokenKey);
+            else localStorage.removeItem(userTokenKey);
         } else if (error.response.data.status === 500) {
             toast.error(error.response.data.message);
         } else {
