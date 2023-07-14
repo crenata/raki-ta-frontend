@@ -90,13 +90,13 @@ class Home extends PureComponent {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-6">
-                            <div className="border rounded p-3">
+                            <div className="border-black rounded p-3">
                                 <p className="m-0 text-center">Pending Approval Observations</p>
                                 <div className="mt-3">
                                     {this.state.observations.length > 0 ?
                                         <div className="observation-list">
                                             {this.state.observations.map(value => (
-                                                <Link to={Config.Links.Admin.ObservationDetail.replace(":id", value.id)} className="border text-decoration-none text-body mt-3" key={value.id}>
+                                                <Link to={Config.Links.Admin.ObservationDetail.replace(":id", value.id)} className="text-decoration-none text-body mt-3" key={value.id}>
                                                     <div className="row">
                                                         <div className="col-4 d-flex align-items-center">
                                                             <img src={value.images[0]?.image} alt="Observation Image" className="w-100 object-fit-cover" style={{height: "6rem"}} />
@@ -116,13 +116,13 @@ class Home extends PureComponent {
                             </div>
                         </div>
                         <div className="col-12 col-md-6">
-                            <div className="border rounded p-3">
+                            <div className="border-black rounded p-3">
                                 <p className="m-0 text-center">Approved Observations</p>
                                 <div className="mt-3">
                                     {this.state.approved_observations.length > 0 ?
                                         <div className="approved-observation-list">
                                             {this.state.approved_observations.map(value => (
-                                                <Link to={Config.Links.Admin.ObservationDetail.replace(":id", value.id)} className="border text-decoration-none text-body mt-3" key={value.id}>
+                                                <Link to={Config.Links.Admin.ObservationDetail.replace(":id", value.id)} className="text-decoration-none text-body mt-3" key={value.id}>
                                                     <div className="row">
                                                         <div className="col-4 d-flex align-items-center">
                                                             <img src={value.images[0]?.image} alt="Observation Image" className="w-100 object-fit-cover" style={{height: "6rem"}} />

@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 import Config from "../../configs/Config";
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo.png";
 import IsEmpty from "../../helpers/IsEmpty";
 import {toast} from "react-toastify";
 
@@ -21,16 +21,15 @@ class Navbar extends PureComponent {
     render() {
         return (
             <nav className="navbar navbar-expand-lg fixed-top bgc-1F1E30">
-                <div className="container-fluid bgc-1F1E30">
-                    <Link to={Config.Links.Admin.Index} className="navbar-brand text-white d-flex align-items-center">
+                <div className="container-fluid">
+                    <Link to={Config.Links.Admin.Index} className="navbar-brand d-flex align-items-center">
                         <img
                             src={logo}
                             alt="Brand"
-                            width="36"
-                            height="36"
+                            width="100"
                             className="logo"
                         />&nbsp;&nbsp;
-                        <p className="m-0 text-white">Raki TA</p>
+                        <h3 className="m-0">Admin Freshwater Fish of Indonesia</h3>
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -45,20 +44,20 @@ class Navbar extends PureComponent {
                     <div className="collapse navbar-collapse" id="user-navbar-content">
                         <ul className="navbar-nav me-auto me-lg-0 ms-lg-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link to={Config.Links.About} className="nav-link text-white">
-                                    <p className="m-0">About Us</p>
+                                <Link to={Config.Links.About} className="nav-link text-body">
+                                    <h3 className="m-0">About Us</h3>
                                 </Link>
                             </li>
                             {IsEmpty(Config.AdminToken) ? <>
                                 <li className="nav-item">
-                                    <Link to={Config.Links.Login} className="nav-link text-white">
-                                        <p className="m-0">Login</p>
+                                    <Link to={Config.Links.Login} className="nav-link text-body">
+                                        <h3 className="m-0">Login</h3>
                                     </Link>
                                 </li>
                             </> : <>
                                 <li className="nav-item">
-                                    <a href="javascript:void(0)" onClick={event => this.logout()} className="nav-link text-white">
-                                        <p className="m-0">Logout</p>
+                                    <a href="javascript:void(0)" onClick={event => this.logout()} className="nav-link text-body">
+                                        <h3 className="m-0">Logout</h3>
                                     </a>
                                 </li>
                             </>}

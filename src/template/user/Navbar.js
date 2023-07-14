@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 import Config from "../../configs/Config";
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo.png";
 import IsEmpty from "../../helpers/IsEmpty";
 import {toast} from "react-toastify";
 
@@ -58,17 +58,16 @@ class Navbar extends PureComponent {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg fixed-top bgc-1F1E30">
-                <div className="container-fluid bgc-1F1E30">
-                    <Link to={Config.Links.Home} className="navbar-brand text-white d-flex align-items-center">
+            <nav className="navbar navbar-expand-lg fixed-top">
+                <div className="container-fluid">
+                    <Link to={Config.Links.Home} className="navbar-brand d-flex align-items-center">
                         <img
                             src={logo}
                             alt="Brand"
-                            width="36"
-                            height="36"
+                            width="100"
                             className="logo"
                         />&nbsp;&nbsp;
-                        <p className="m-0 text-white">Raki TA</p>
+                        <h3 className="m-0">Freshwater Fish of Indonesia</h3>
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -83,34 +82,34 @@ class Navbar extends PureComponent {
                     <div className="collapse navbar-collapse" id="user-navbar-content">
                         <ul className="navbar-nav me-auto me-lg-0 ms-lg-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link to={Config.Links.About} className="nav-link text-white">
-                                    <p className="m-0">About Us</p>
+                                <Link to={Config.Links.About} className="nav-link text-body">
+                                    <h3 className="m-0">About Us</h3>
                                 </Link>
                             </li>
                             {IsEmpty(Config.UserToken) ? <>
                                 <li className="nav-item">
-                                    <Link to={Config.Links.Register} className="nav-link text-white">
-                                        <p className="m-0">Register</p>
+                                    <Link to={Config.Links.Register} className="nav-link text-body">
+                                        <h3 className="m-0">Register</h3>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={Config.Links.Login} className="nav-link text-white">
-                                        <p className="m-0">Login</p>
+                                    <Link to={Config.Links.Login} className="nav-link text-body">
+                                        <h3 className="m-0">Login</h3>
                                     </Link>
                                 </li>
                             </> : <>
                                 <li className="nav-item">
-                                    <Link to={Config.Links.ObservationAdd} className="nav-link text-white">
-                                        <p className="m-0">Submit Observation</p>
+                                    <Link to={Config.Links.ObservationAdd} className="nav-link text-body">
+                                        <h3 className="m-0">Submit Observation</h3>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="javascript:void(0)" className="nav-link position-relative notification-badge">
+                                    <a href="javascript:void(0)" className="nav-link text-body position-relative notification-badge">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            width="16"
-                                            height="16"
-                                            fill="#FFFFFF"
+                                            width="32"
+                                            height="32"
+                                            fill="#000"
                                             className="bi bi-bell-fill"
                                             viewBox="0 0 16 16"
                                         >
@@ -129,8 +128,8 @@ class Navbar extends PureComponent {
                                     </a>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="javascript:void(0)" onClick={event => this.logout()} className="nav-link text-white">
-                                        <p className="m-0">Logout</p>
+                                    <a href="javascript:void(0)" onClick={event => this.logout()} className="nav-link text-body">
+                                        <h3 className="m-0">Logout</h3>
                                     </a>
                                 </li>
                             </>}

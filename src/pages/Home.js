@@ -60,7 +60,7 @@ class Home extends PureComponent {
                                                     <h5 className="card-title">{value.name}</h5>
                                                     <p className="card-text">{value.location}</p>
                                                     <Link to={Config.Links.ObservationDetail.replace(":id", value.id)}
-                                                          className="btn btn-primary">
+                                                          className="btn btn-dark">
                                                         See Detail
                                                     </Link>
                                                 </div>

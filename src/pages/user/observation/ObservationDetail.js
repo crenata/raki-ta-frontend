@@ -155,7 +155,8 @@ class ObservationDetail extends PureComponent {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-6">
-                            <div id="carousel-images" className="carousel slide">
+                            <p className="m-0">Observer : {this.state.observation.user?.name}</p>
+                            <div id="carousel-images" className="carousel slide mt-3">
                                 <div className="carousel-indicators">
                                     {this.state.observation.images.map((value, index) => (
                                         <button
@@ -185,7 +186,6 @@ class ObservationDetail extends PureComponent {
                                 </button>
                             </div>
                             <div id="map-container" className="mt-3"/>
-                            <p className="mt-2 mb-0">Observer : {this.state.observation.user?.name}</p>
                         </div>
                         <div className="col-12 col-md-6 mt-3 mt-md-0">
                             <div className="">
@@ -212,8 +212,8 @@ class ObservationDetail extends PureComponent {
                                 <p className="m-0">Description</p>
                                 <p className="m-0">{this.state.observation.description}</p>
                             </div>
-                            <div className="mt-3">
-                                <label htmlFor="comment" className="m-0">Comment</label>
+                            <div className="mt-5">
+                                <label htmlFor="comment" className="mt-3 mb-0">Comment</label>
                                 <textarea
                                     id="comment"
                                     className="form-control"
