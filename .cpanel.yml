@@ -1,0 +1,9 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/fres2238/public_html/
+    - /bin/cp -R * $DEPLOYPATH
+    - cd $DEPLOYPATH
+    - /bin/cp .env.example .env
+    - /bin/sed -i 's+YOUR-URL+https://freshwaterfishindonesia.com+g' .env
+    - /bin/npm install
+    - /bin/npm run build
