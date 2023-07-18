@@ -194,12 +194,12 @@ class ObservationDetail extends PureComponent {
                             </div>
                         </div>
                     </div>
-                    {this.state.observation?.latest_history?.status === 1 &&
+                    {parseInt(this.state.observation?.latest_history?.status) === 1 &&
                     <div className="d-flex align-items-center justify-content-center mt-3">
                         <button className="btn btn-danger" onClick={event => this.reject()}>Reject</button>
                         <button className="btn btn-primary ms-3" onClick={event => this.approve()}>Approve</button>
                     </div>}
-                    {this.state.observation?.latest_history?.status === 3 &&
+                    {parseInt(this.state.observation?.latest_history?.status) === 3 &&
                     <div className="d-flex align-items-center justify-content-center mt-3">
                         <button className="btn btn-danger" onClick={event => this.delete()}>Delete</button>
                         <Link to={Config.Links.Admin.ObservationEdit.replace(":id", this.state.observation.id)}
