@@ -155,7 +155,7 @@ class ObservationDetail extends PureComponent {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-6">
-                            <p className="m-0">Observer : {this.state.observation.user?.name}</p>
+                            <p className="m-0 fw-bold">Observer : {this.state.observation.user?.name}</p>
                             <div id="carousel-images" className="carousel slide mt-3">
                                 <div className="carousel-indicators">
                                     {this.state.observation.images.map((value, index) => (
@@ -189,27 +189,27 @@ class ObservationDetail extends PureComponent {
                         </div>
                         <div className="col-12 col-md-6 mt-3 mt-md-0">
                             <div className="">
-                                <p className="m-0">Species Name</p>
-                                <p className="m-0">{this.state.observation.name}</p>
+                                <p className="m-0 fw-bold">Species Name</p>
+                                <p className="m-0 fst-italic">{this.state.observation.name}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0">Observation Date</p>
+                                <p className="m-0 fw-bold">Observation Date</p>
                                 <p className="m-0">{this.state.observation.date}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0">Observation Location</p>
+                                <p className="m-0 fw-bold">Observation Location</p>
                                 <p className="m-0">{this.state.observation.location}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0">Latitude</p>
+                                <p className="m-0 fw-bold">Latitude</p>
                                 <p className="m-0">{this.state.observation.latitude}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0">Longitude</p>
+                                <p className="m-0 fw-bold">Longitude</p>
                                 <p className="m-0">{this.state.observation.longitude}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0">Description</p>
+                                <p className="m-0 fw-bold">Description</p>
                                 <p className="m-0">{this.state.observation.description}</p>
                             </div>
                             <div className="mt-5">

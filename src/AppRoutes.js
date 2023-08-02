@@ -13,12 +13,14 @@ import ObservationAdd from "./pages/user/observation/ObservationAdd";
 import {default as UserObservationDetail} from "./pages/user/observation/ObservationDetail";
 import {default as AdminObservationDetail} from "./pages/admin/observation/ObservationDetail";
 import ObservationEdit from "./pages/admin/observation/ObservationEdit";
+import Help from "./pages/Help";
 
 class AppRoutes extends PureComponent {
     render() {
         return (
             <BrowserRouter>
                 <Routes>
+                    <Route path={Config.Routers.Help} element={<RouteElement component={Help} />} />
                     <Route path={Config.Routers.About} element={<RouteElement component={About} />} />
                     <Route path={Config.Routers.Login} element={<RouteElement component={UserLogin} />} />
                     <Route path={Config.Routers.Register} element={<RouteElement component={UserRegister} />} />

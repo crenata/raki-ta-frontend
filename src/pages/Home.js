@@ -57,7 +57,7 @@ class Home extends PureComponent {
                                                 <img src={value.images[0]?.image} alt="Observation Image"
                                                      className="card-img-top object-fit-cover" style={{height: "16rem"}}/>
                                                 <div className="card-body">
-                                                    <h5 className="card-title">{value.name}</h5>
+                                                    <h5 className="card-title fst-italic">{value.name}</h5>
                                                     <p className="card-text">{value.location}</p>
                                                     <Link to={Config.Links.ObservationDetail.replace(":id", value.id)}
                                                           className="btn btn-dark">

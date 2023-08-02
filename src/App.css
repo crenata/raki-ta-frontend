@@ -17,7 +17,7 @@ h6 {
     color: #000000 !important;
 }
 .app-content {
-    padding: 10rem 0;
+    padding: 13rem 0;
     height: 100vh;
     overflow: auto;
     background: rgb(172,177,189);
@@ -107,7 +107,22 @@ h6 {
     height: 24rem;
     object-fit: contain;
 }
+.navbar-logo {
+    width: 50px;
+}
+.navbar-title {
+    font-size: large;
+}
 @media (min-width: 576px) {
+    .app-content {
+        padding: 10rem 0;
+    }
+    .navbar-logo {
+        width: 100px;
+    }
+    .navbar-title {
+        font-size: larger;
+    }
     .auth-form {
         width: 40%;
     }

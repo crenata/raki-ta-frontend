@@ -56,6 +56,7 @@ const Config = {
         Login: "login",
         Register: "register",
         About: "about",
+        Help: "help",
         ObservationAdd: "submit-observation",
         ObservationDetail: "observation/:id",
         Admin: {
@@ -70,6 +71,7 @@ const Config = {
         Login: "/login",
         Register: "/register",
         About: "/about",
+        Help: "/help",
         ObservationAdd: "/submit-observation",
         ObservationDetail: "/observation/:id",
         Admin: {

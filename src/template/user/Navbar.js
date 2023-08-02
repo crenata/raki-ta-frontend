@@ -59,18 +59,19 @@ class Navbar extends PureComponent {
     render() {
         return (
             <nav className="navbar navbar-expand-lg fixed-top">
-                <div className="container-fluid">
-                    <Link to={Config.Links.Home} className="navbar-brand d-flex align-items-center">
-                        <img
-                            src={logo}
-                            alt="Brand"
-                            width="100"
-                            className="logo"
-                        />&nbsp;&nbsp;
-                        <h3 className="m-0">Freshwater Fish of Indonesia</h3>
+                <div className="container-fluid d-block d-md-flex">
+                    <Link to={Config.Links.Home} className="navbar-brand d-block d-md-flex align-items-center">
+                        <div className="text-center">
+                            <img
+                                src={logo}
+                                alt="Brand"
+                                className="navbar-logo"
+                            />
+                        </div>&nbsp;&nbsp;
+                        <h3 className="m-0 text-center text-md-start navbar-title">Freshwater Fish of Indonesia</h3>
                     </Link>
                     <button
-                        className="navbar-toggler"
+                        className="navbar-toggler mt-3 mt-md-0"
                         data-bs-toggle="collapse"
                         data-bs-target="#user-navbar-content"
                         aria-controls="user-navbar-content"
@@ -81,11 +82,6 @@ class Navbar extends PureComponent {
                     </button>
                     <div className="collapse navbar-collapse" id="user-navbar-content">
                         <ul className="navbar-nav me-auto me-lg-0 ms-lg-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link to={Config.Links.About} className="nav-link text-body">
-                                    <h3 className="m-0">About Us</h3>
-                                </Link>
-                            </li>
                             {IsEmpty(Config.UserToken) ? <>
                                 <li className="nav-item">
                                     <Link to={Config.Links.Register} className="nav-link text-body">
@@ -103,6 +99,18 @@ class Navbar extends PureComponent {
                                         <h3 className="m-0">Submit Observation</h3>
                                     </Link>
                                 </li>
+                            </>}
+                            <li className="nav-item">
+                                <Link to={Config.Links.Help} className="nav-link text-body">
+                                    <h3 className="m-0">Help</h3>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={Config.Links.About} className="nav-link text-body">
+                                    <h3 className="m-0">About Us</h3>
+                                </Link>
+                            </li>
+                            {!IsEmpty(Config.UserToken) && <>
                                 <li className="nav-item">
                                     <a href="javascript:void(0)" className="nav-link text-body position-relative notification-badge">
                                         <svg
