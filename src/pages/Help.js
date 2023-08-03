@@ -16,7 +16,7 @@ class About extends PureComponent {
                     <h5 className="mt-3 mb-0 fw-normal text-center">Selamat Datang di Situs Freshwaterfish of Indonesia</h5>
                     <h5 className="mt-3 mb-0 fw-normal">Berikut adalah penjelasan mengenai cara menggunakan web ini dengan baik</h5>
                     <ul className="mt-3">
-                        <li>User dapat melakukan Registrasi Akun agar dapat menggunakan fitur yang ada seperti ada yang seperti submit observasi dan berkomentar.</li>
+                        <li>User dapat melakukan Registrasi Akun agar dapat menggunakan fitur yang ada seperti submit observasi dan berkomentar.</li>
                         <li>User dapat Submit Observation dengan memasukkan data observasi, pinpoint lokasi penemuan dan memasukkan foto-foto observasi.</li>
                         <li>Observasi yang sudah disubmit akan dilihat oleh Administrator sebelum dipublikasi.</li>
                         <li>Hasil yang sudah dipublikasi namun terdapat kesalahan data hanya dapat diedit oleh Admin.</li>
