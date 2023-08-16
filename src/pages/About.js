@@ -7,7 +7,7 @@ class About extends PureComponent {
         return (
             <Template>
                 <div className="container text-justify">
-                    <h3 className="m-0 text-center">About Us</h3>
+                    <h3 className="m-0 text-center">Tentang Kami</h3>
                     <div className="text-center mt-5">
                         <a href="https://web.facebook.com/groups/696112671381885" target="_blank">
                             <img src={logo} alt="Logo" className="w-25"/>
