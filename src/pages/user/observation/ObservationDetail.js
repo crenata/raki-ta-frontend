@@ -13,7 +13,9 @@ class ObservationDetail extends PureComponent {
                 date: "",
                 latitude: 0,
                 longitude: 0,
-                location: "",
+                province: {
+                    name: ""
+                },
                 description: "",
                 images: [],
                 created_at: "",
@@ -189,16 +191,16 @@ class ObservationDetail extends PureComponent {
                         </div>
                         <div className="col-12 col-md-6 mt-3 mt-md-0">
                             <div className="">
-                                <p className="m-0 fw-bold">Species Name</p>
+                                <p className="m-0 fw-bold">Nama Spesies</p>
                                 <p className="m-0 fst-italic">{this.state.observation.name}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0 fw-bold">Observation Date</p>
+                                <p className="m-0 fw-bold">Tanggal Observasi</p>
                                 <p className="m-0">{this.state.observation.date}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0 fw-bold">Observation Location</p>
-                                <p className="m-0">{this.state.observation.location}</p>
+                                <p className="m-0 fw-bold">Lokasi</p>
+                                <p className="m-0">{this.state.observation.province.name}</p>
                             </div>
                             <div className="mt-3">
                                 <p className="m-0 fw-bold">Latitude</p>
@@ -209,7 +211,19 @@ class ObservationDetail extends PureComponent {
                                 <p className="m-0">{this.state.observation.longitude}</p>
                             </div>
                             <div className="mt-3">
-                                <p className="m-0 fw-bold">Description</p>
+                                <p className="m-0 fw-bold">Nama Lokal</p>
+                                <p className="m-0">{this.state.observation.local_name}</p>
+                            </div>
+                            <div className="mt-3">
+                                <p className="m-0 fw-bold">Lokasi Observasi</p>
+                                <p className="m-0">{this.state.observation.found}</p>
+                            </div>
+                            <div className="mt-3">
+                                <p className="m-0 fw-bold">Substrat</p>
+                                <p className="m-0">{this.state.observation.substrate}</p>
+                            </div>
+                            <div className="mt-3">
+                                <p className="m-0 fw-bold">Deskripsi</p>
                                 <p className="m-0">{this.state.observation.description}</p>
                             </div>
                             <div className="mt-5">

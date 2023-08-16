@@ -9,6 +9,7 @@ class Navbar extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            user: null,
             notifications: [],
             page: 1,
             isLastPage: false,
@@ -17,7 +18,20 @@ class Navbar extends PureComponent {
     }
 
     componentDidMount() {
-        if (!IsEmpty(Config.UserToken)) this.getData();
+        if (!IsEmpty(Config.UserToken)) {
+            this.getUser();
+            this.getData();
+        }
+    }
+
+    getUser() {
+        Config.AxiosUser.get("auth/self").then(response => {
+            if (response) {
+                this.setState({
+                    user: response.data.data
+                });
+            }
+        });
     }
 
     getData() {
@@ -68,7 +82,10 @@ class Navbar extends PureComponent {
                                 className="navbar-logo"
                             />
                         </div>&nbsp;&nbsp;
-                        <h3 className="m-0 text-center text-md-start navbar-title">Freshwater Fish of Indonesia</h3>
+                        <div className="">
+                            <h3 className="m-0 text-center text-md-start navbar-title">Freshwater Fish of Indonesia</h3>
+                            <p className="m-0 small">{this.state.user?.name}</p>
+                        </div>
                     </Link>
                     <button
                         className="navbar-toggler mt-3 mt-md-0"
@@ -96,18 +113,18 @@ class Navbar extends PureComponent {
                             </> : <>
                                 <li className="nav-item">
                                     <Link to={Config.Links.ObservationAdd} className="nav-link text-body">
-                                        <h3 className="m-0">Submit Observation</h3>
+                                        <h3 className="m-0">Ajukan Observasi</h3>
                                     </Link>
                                 </li>
                             </>}
                             <li className="nav-item">
                                 <Link to={Config.Links.Help} className="nav-link text-body">
-                                    <h3 className="m-0">Help</h3>
+                                    <h3 className="m-0">Bantuan</h3>
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link to={Config.Links.About} className="nav-link text-body">
-                                    <h3 className="m-0">About Us</h3>
+                                    <h3 className="m-0">Tentang Kami</h3>
                                 </Link>
                             </li>
                             {!IsEmpty(Config.UserToken) && <>

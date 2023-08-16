@@ -45,7 +45,7 @@ class Register extends PureComponent {
                                     type="text"
                                     className="form-control"
                                     id="name"
-                                    placeholder="name@example.com"
+                                    placeholder="name"
                                     value={this.state.name}
                                     onChange={event => this.setValue("name", event.target.value)}
                                 />
