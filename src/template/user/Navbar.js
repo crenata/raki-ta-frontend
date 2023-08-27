@@ -82,8 +82,8 @@ class Navbar extends PureComponent {
                                 className="navbar-logo"
                             />
                         </div>&nbsp;&nbsp;
-                        <div className="">
-                            <h3 className="m-0 text-center text-md-start navbar-title">Freshwater Fish of Indonesia</h3>
+                        <div className="text-center text-md-start">
+                            <h3 className="m-0 navbar-title">Freshwater Fish of Indonesia</h3>
                             <p className="m-0 small">{this.state.user?.name}</p>
                         </div>
                     </Link>
